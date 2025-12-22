@@ -1,0 +1,48 @@
+CREATE DATABASE fixo;
+
+USE fixo;
+
+CREATE TABLE providers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    phone VARCHAR(20),
+    password VARCHAR(255) NOT NULL,
+    address TEXT,
+    service VARCHAR(100),
+    rating DECIMAL(2,1) DEFAULT 0.0,
+    availability ENUM('available', 'busy', 'offline') DEFAULT 'available',
+    isAdmin TINYINT(1) DEFAULT 0,
+    status TINYINT(1) DEFAULT 0,
+    createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE clients ( 
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    phone VARCHAR(20),
+    password VARCHAR(255) NOT NULL,
+    address TEXT,
+    isAdmin TINYINT(1) DEFAULT 0,
+    status TINYINT(1) DEFAULT 0,
+    createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO providers (name, email, password, address, service, isAdmin, status)
+VALUES
+('John Doe', 'john@example.com', 'hashedpassword1', 'New York, USA', 'Plumbing', 'provider', 0),
+
+('Sarah Smith', 'sarah@example.com', 'hashedpassword2', 'Los Angeles, USA', 'Electrical', 'provider', 0),
+
+('Mike Johnson', 'mike@example.com', 'hashedpassword3', 'Chicago, USA', 'Cleaning', 'provider', 0);
+
+
+
+INSERT INTO clients (name, email, password, address, isAdmin, status)
+VALUES
+('Will byers', 'will@example.com', 'hashedpassword0', 'Hawkins, USA',  'provider', 0),
+
+('Steve Harington', 'steve@example.com', 'hashedpassword2', 'Hawkins, USA',  'provider', 0),
+
+('Dustin Henderson', 'dustin@example.com', 'hashedpassword3', 'Hawkins, USA',  'provider', 0);
