@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . "/../../Proccessing_pages/Dashboard/dashboard-provider-proccessing.php";
+
+
 // Get user data from session
 $user_data = $_SESSION["user"] ?? [];
 
@@ -19,11 +22,12 @@ $dashboard_stats = [
     'response_rate' => 98
 ];
 
-$recent_bookings = [
-    ['id' => 1001, 'customer' => 'John Smith', 'service' => 'Oil Change', 'time' => '10:30 AM', 'status' => 'pending'],
-    ['id' => 1002, 'customer' => 'Sarah Johnson', 'service' => 'Brake Repair', 'time' => '2:00 PM', 'status' => 'confirmed'],
-    ['id' => 1003, 'customer' => 'Mike Chen', 'service' => 'AC Repair', 'time' => '4:30 PM', 'status' => 'completed']
-];
+
+// $recent_bookings = [
+//     ['id' => 1001, 'customer' => 'John Smith', 'problem_type' => 'Oil Change', 'created_at' => '10:30 AM', 'status' => 'pending'],
+//     ['id' => 1002, 'customer' => 'Sarah Johnson', 'problem_type' => 'Brake Repair', 'created_at' => '2:00 PM', 'status' => 'confirmed'],
+//     ['id' => 1003, 'customer' => 'Mike Chen', 'problem_type' => 'AC Repair', 'created_at' => '4:30 PM', 'status' => 'completed']
+// ];
 
 $earnings_data = [
     'this_week' => 3200,
@@ -138,8 +142,10 @@ $earnings_data = [
                                 </div>
                                 <div>
                                     <p class="font-medium text-gray-900"><?php echo $booking['customer']; ?></p>
-                                    <p class="text-sm text-gray-500"><?php echo $booking['service']; ?> •
-                                        <?php echo $booking['time']; ?>
+                                    <p class="text-sm text-gray-500">
+                                        <?php echo ucwords($booking['problem_type']); ?> •
+                                        <?php echo (new DateTime($booking['created_at']))->format('M d, Y'); ?> •
+                                        <?php echo (new DateTime($booking['created_at']))->format('h:i A'); ?>
                                     </p>
                                 </div>
                             </div>

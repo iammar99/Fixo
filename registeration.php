@@ -1,6 +1,8 @@
 <?php
 $pageTitle = "Home";
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $errors = $_SESSION['errors'] ?? [];
 $form_data = $_SESSION['form_data'] ?? [];
 $success_message = $_SESSION['success_message'] ?? '';

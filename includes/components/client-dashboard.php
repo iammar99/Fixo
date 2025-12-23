@@ -322,28 +322,54 @@ if (isset($_SESSION["success_message"]) && $_SESSION["success_message"] == true)
         </div>
 
         <div class="space-y-4 mb-6">
-            <div class="bg-gray-700/50 rounded-lg p-4">
-                <p class="text-gray-400 text-sm mb-1">Mechanic</p>
-                <p class="text-white font-semibold text-lg" id="modalMechanicName"></p>
-            </div>
+            <form action="Proccessing_pages/Dashboard/booking_proccessing.php" method="POST" class="space-y-4">
+                <div class="bg-gray-700/50 rounded-lg p-4">
+                    <p class="text-gray-400 text-sm mb-1">Mechanic</p>
+                    <p class="text-white font-semibold text-lg" id="modalMechanicName"></p>
+                </div>
 
-            <div class="bg-gray-700/50 rounded-lg p-4">
-                <p class="text-gray-400 text-sm mb-1">Phone Number</p>
-                <p class="text-fixo-orange font-bold text-2xl" id="modelPhone"></p>
-            </div>
+                <div class="bg-gray-700/50 rounded-lg p-4">
+                    <p class="text-gray-400 text-sm mb-1">Phone Number</p>
+                    <p class="text-fixo-orange font-bold text-2xl" id="modelPhone"></p>
+                </div>
 
-            <div class="bg-gray-700/50 rounded-lg p-4">
-                <label class="text-gray-400 text-sm mb-2 block">Describe your issue</label>
-                <textarea
-                    class="w-full bg-gray-800 text-white rounded-lg p-3 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-fixo-orange resize-none"
-                    rows="3" placeholder="e.g., Engine making strange noise..."></textarea>
-            </div>
+                <div class="bg-gray-700/50 rounded-lg p-4">
+                    <label class="text-gray-400 text-sm mb-2 block">Select Problem Type</label>
+                    <select name="problemType" id="problemType" required
+                        class="w-full bg-gray-800 text-white rounded-lg p-3 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-fixo-orange">
+                        <option value="" disabled selected>Choose a problem type</option>
+                        <option value="engine">Engine Issues</option>
+                        <option value="electrical">Electrical Problems</option>
+                        <option value="brakes">Brake System</option>
+                        <option value="suspension">Suspension & Steering</option>
+                        <option value="transmission">Transmission</option>
+                        <option value="ac">AC & Heating</option>
+                        <option value="battery">Battery & Starting</option>
+                        <option value="tires">Tires & Wheels</option>
+                        <option value="general">General Maintenance</option>
+                        <option value="other">Other Issues</option>
+                    </select>
+                </div>
+
+                <div class="bg-gray-700/50 rounded-lg p-4">
+                    <label class="text-gray-400 text-sm mb-2 block">Problem Description</label>
+                    <textarea name="problemDescription" id="problemDescription" required
+                        class="w-full bg-gray-800 text-white rounded-lg p-3 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-fixo-orange resize-none"
+                        rows="3" placeholder="Describe your issue in detail..."></textarea>
+                </div>
+
+                <!-- Hidden fields for mechanic data -->
+                <input type="hidden" name="mechanicId" id="mechanicId">
+                <input type="hidden" name="mechanicName" id="mechanicNameInput">
+                <input type="hidden" name="mechanicPhone" id="mechanicPhoneInput">
+
+                <button type="submit"
+                    class="w-full bg-fixo-orange hover:bg-orange-600 text-white py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 mt-4">
+                    Confirm & Book Now
+                </button>
+            </form>
         </div>
 
-        <button onclick="confirmBooking()"
-            class="w-full bg-fixo-orange hover:bg-orange-600 text-white py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105">
-            Confirm & Book Now
-        </button>
     </div>
 </div>
 
@@ -355,6 +381,9 @@ if (isset($_SESSION["success_message"]) && $_SESSION["success_message"] == true)
         document.getElementById('modalMechanicName').textContent = name;
         document.getElementById('modelPhone').textContent = price;
         document.getElementById('bookingModal').classList.remove('hidden');
+        document.getElementById('mechanicId').value = id;
+        document.getElementById('mechanicNameInput').value = name;
+        document.getElementById('mechanicPhoneInput').value = price;
     }
 
     function closeModal() {

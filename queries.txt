@@ -29,6 +29,19 @@ CREATE TABLE clients (
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT NOT NULL,
+    provider_id INT NOT NULL,
+    problem_type VARCHAR(50),
+    problem_description TEXT,
+    status ENUM('pending', 'accepted', 'in_progress', 'completed', 'cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE,
+    FOREIGN KEY (provider_id) REFERENCES providers(id) ON DELETE CASCADE
+);
+
 INSERT INTO providers (name, email, password, address, service, isAdmin, status)
 VALUES
 ('John Doe', 'john@example.com', 'hashedpassword1', 'New York, USA', 'Plumbing', 'provider', 0),
