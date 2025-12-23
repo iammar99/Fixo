@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . "/../../Proccessing_pages/Dashboard/dashboard-provider-proccessing.php";
 
-
 // Get user data from session
 $user_data = $_SESSION["user"] ?? [];
 
@@ -73,7 +72,7 @@ $earnings_data = [
                 </div>
                 <div>
                     <p class="text-gray-500 text-sm">Total Jobs</p>
-                    <p class="text-3xl font-bold text-gray-800"><?php echo $dashboard_stats['total_jobs']; ?></p>
+                    <p class="text-3xl font-bold text-gray-800"><?php echo count($recent_bookings) ?></p>
                 </div>
             </div>
         </div>
@@ -86,7 +85,7 @@ $earnings_data = [
                 </div>
                 <div>
                     <p class="text-gray-500 text-sm">Pending</p>
-                    <p class="text-3xl font-bold text-gray-800"><?php echo $dashboard_stats['pending_jobs']; ?></p>
+                    <p class="text-3xl font-bold text-gray-800"><?php echo $pending_count; ?></p>
                 </div>
             </div>
         </div>
@@ -161,9 +160,13 @@ $earnings_data = [
                                 ?>">
                                     <?php echo ucfirst($booking['status']); ?>
                                 </span>
-                                <button class="ml-3 text-gray-400 hover:text-fixo-orange">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
+                                <form action="Proccessing_pages/Dashboard/delete_booking.php" method="POST" class="m-0 inline">
+                                    <input type="hidden" name="booking_id" value="<?= $booking['id'] ?>">
+
+                                    <button type="submit" name="delete_btn"
+                                        class="ml-3  text-gray-400 hover:text-red-600 transition-colors">
+                                        <i class="fa-solid fa-trash-can"></i> </button>
+                                </form>
                             </div>
                         </div>
                     <?php endforeach; ?>

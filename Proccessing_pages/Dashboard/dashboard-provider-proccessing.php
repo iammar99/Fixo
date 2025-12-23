@@ -24,7 +24,9 @@ try {
         $stmt->bindParam(":provider", $provider);
         $stmt->execute();
         $recent_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        $pending_count = count(array_filter($recent_bookings, function ($booking) {
+            return $booking['status'] == 'pending';
+        }));
     }
 } catch (PDOException $e) {
     echo "" . $e->getMessage() . "";
