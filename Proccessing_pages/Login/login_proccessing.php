@@ -70,10 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         if (!password_verify($password, $user["password"])) {
                             $errors[] = "Password doesn't match";
                         } else {
-
-
-
-
                             // =========| Success |=========
                             $_SESSION["success_message"] = ucfirst(rtrim($user_type, 's')) . " Login Successful";
                             $_SESSION["errors"] = [];
@@ -81,9 +77,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             $_SESSION["is_admin"] = $user["isAdmin"];
                             $_SESSION["user"] = $user;
                             $_SESSION["user_type"] = $user_type;
-                            if($user_type == "clients"){
+                            if ($user_type == "clients") {
                                 header("Location: " . BASE_URL . "dashboard.php");
-                            }else{
+                            } else {
+                                $availability = "available";
+                                $query = "UPDATE providers SET availability = :availability WHERE email = :email";
+                                $stmt = $db->prepare($query);
+                                $stmt->bindParam(":availability", $availability);
+                                $stmt->bindParam(":email", $email);
+                                $stmt->execute();
                                 header("Location: " . BASE_URL . "dashboard.php");
                             }
                             exit();

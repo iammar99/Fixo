@@ -42,20 +42,32 @@ CREATE TABLE bookings (
     FOREIGN KEY (provider_id) REFERENCES providers(id) ON DELETE CASCADE
 );
 
-INSERT INTO providers (name, email, password, address, service, isAdmin, status)
+INSERT INTO providers 
+(name, email, phone, password, address, service, rating, availability, isAdmin, status) 
 VALUES
-('John Doe', 'john@example.com', 'hashedpassword1', 'New York, USA', 'Plumbing', 'provider', 0),
+('John Smith', 'john.smith@provider.com', '1234567890', 'hashed_password_1', '123 Main Street, NY', 'Plumber', 4.5, 'available', 0, 1),
+('Alice Brown', 'alice.brown@provider.com', '2345678901', 'hashed_password_2', '45 Park Avenue, CA', 'Electrician', 4.2, 'busy', 0, 1),
+('Michael Lee', 'michael.lee@provider.com', '3456789012', 'hashed_password_3', '78 Sunset Blvd, TX', 'AC Repair', 4.8, 'available', 0, 1),
+('Sarah Johnson', 'sarah.johnson@provider.com', '4567890123', 'hashed_password_4', '90 Lake View, FL', 'Carpenter', 4.0, 'offline', 0, 1),
+('Admin Provider', 'admin@provider.com', '9999999999', 'admin_password', 'HQ Address', 'Management', 5.0, 'available', 1, 1);
 
-('Sarah Smith', 'sarah@example.com', 'hashedpassword2', 'Los Angeles, USA', 'Electrical', 'provider', 0),
-
-('Mike Johnson', 'mike@example.com', 'hashedpassword3', 'Chicago, USA', 'Cleaning', 'provider', 0);
 
 
-
-INSERT INTO clients (name, email, password, address, isAdmin, status)
+INSERT INTO clients 
+(name, email, phone, password, address, isAdmin, status) 
 VALUES
-('Will byers', 'will@example.com', 'hashedpassword0', 'Hawkins, USA',  'provider', 0),
+('David Miller', 'david.miller@gmail.com', '1112223333', 'hashed_client_1', '12 Elm Street, NY', 0, 1),
+('Emma Wilson', 'emma.wilson@gmail.com', '2223334444', 'hashed_client_2', '34 Oak Street, CA', 0, 1),
+('James Anderson', 'james.anderson@gmail.com', '3334445555', 'hashed_client_3', '56 Pine Road, TX', 0, 1),
+('Olivia Taylor', 'olivia.taylor@gmail.com', '4445556666', 'hashed_client_4', '78 Maple Ave, FL', 0, 1),
+('Admin Client', 'admin@client.com', '8888888888', 'admin_client_pass', 'Admin Address', 1, 1);
 
-('Steve Harington', 'steve@example.com', 'hashedpassword2', 'Hawkins, USA',  'provider', 0),
 
-('Dustin Henderson', 'dustin@example.com', 'hashedpassword3', 'Hawkins, USA',  'provider', 0);
+INSERT INTO bookings
+(client_id, provider_id, problem_type, problem_description, status)
+VALUES
+(1, 1, 'Leakage', 'Water leaking from kitchen sink', 'pending'),
+(2, 2, 'Power Issue', 'Frequent power cuts in living room', 'accepted'),
+(3, 3, 'Cooling Problem', 'AC not cooling properly', 'in_progress'),
+(4, 4, 'Furniture Repair', 'Broken wooden chair leg', 'completed'),
+(1, 2, 'Wiring', 'Need new wiring for bedroom lights', 'cancelled');
