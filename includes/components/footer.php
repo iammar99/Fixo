@@ -42,7 +42,7 @@
                     <ul class="space-y-3">
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#howItWorks" class="text-gray-400 hover:text-white transition-colors">How It Works</a></li>
                         <li><a href="registeration.php?type=provider" class="text-gray-400 hover:text-white transition-colors">Become a Mechanic</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
                     </ul>

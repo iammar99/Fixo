@@ -193,7 +193,7 @@ $pageTitle = "Home";
     </section>
 
     <!-- How It Works Section - Fixed for Mobile -->
-    <section class="py-16 md:py-24 bg-gray-50">
+    <section class="py-16 md:py-24 bg-gray-50" id="howItWorks">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How Fixo Works</h2>
@@ -673,7 +673,7 @@ $pageTitle = "Home";
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#"
+                <a href="/dashboard.php"
                     class="px-8 py-4 bg-white text-fixo-orange font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 inline-flex items-center justify-center">
                     Book Now
                     <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

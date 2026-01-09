@@ -1,8 +1,8 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+        session_start();
+    }
 }
 require_once __DIR__ . '/../../Config/config.php';
 
@@ -56,27 +56,34 @@ require_once __DIR__ . '/../../Config/config.php';
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
-                <div class="flex items-center">
-                    <div
-                        class="w-10 h-10 bg-gradient-to-br from-fixo-orange to-orange-500 rounded-lg flex items-center justify-center mr-3">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
+                <a href="/">
+                    <div class="flex items-center">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-fixo-orange to-orange-500 rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-2xl font-bold text-gray-900">Fixo</span>
                     </div>
-                    <span class="text-2xl font-bold text-gray-900">Fixo</span>
-                </div>
+                </a>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="/" class="text-gray-700 hover:text-fixo-orange font-medium transition-colors">Home</a>
                     <a href="dashboard.php"
                         class="text-gray-700 hover:text-fixo-orange font-medium transition-colors">Dashboard</a>
-                    <a href="#" class="text-gray-700 hover:text-fixo-orange font-medium transition-colors">How It
+                    <a href="#howItWorks" class="text-gray-700 hover:text-fixo-orange font-medium transition-colors">How
+                        It
                         Works</a>
                     <?php if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true && isset($_SESSION["is_admin"]) && $_SESSION["is_admin"] == 1): ?>
                         <a href="/admin.php"
                             class="text-gray-700 hover:text-fixo-orange font-medium transition-colors">Admin</a>
+                    <?php endif ?>
+                    <?php if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true && isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "clients"): ?>
+                        <a href="/trackBooking.php"
+                            class="text-gray-700 hover:text-fixo-orange font-medium transition-colors">Track Your Order</a>
                     <?php endif ?>
                 </div>
 
@@ -138,7 +145,8 @@ require_once __DIR__ . '/../../Config/config.php';
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                     <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
                     </svg>
                 </button>
             </div>
@@ -146,21 +154,33 @@ require_once __DIR__ . '/../../Config/config.php';
             <!-- Mobile Menu (Hidden by default) -->
             <div id="mobile-menu" class="md:hidden hidden py-4 border-t border-gray-200 mt-2">
                 <div class="space-y-4">
-                    <a href="/" class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors">Home</a>
-                    <a href="dashboard.php" class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors">Dashboard</a>
-                    <a href="#" class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors">How It Works</a>
-                    
+                    <a href="/"
+                        class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors">Home</a>
+                    <a href="dashboard.php"
+                        class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors">Dashboard</a>
+                    <a href="#howItWorks"
+                        class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors">How It
+                        Works</a>
+
                     <?php if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true && isset($_SESSION["is_admin"]) && $_SESSION["is_admin"] == 1): ?>
-                        <a href="/admin.php" class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors">Admin</a>
+                        <a href="/admin.php"
+                            class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors">Admin</a>
                     <?php endif ?>
-                    
+                    <?php if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true && isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "clients"): ?>
+                        <a href="/trackBooking.php"
+                            class="block text-gray-700 hover:text-fixo-orange font-medium transition-colors ">Track Your Order</a>
+                    <?php endif ?>
+
                     <hr class="border-gray-200">
-                    
+
                     <?php if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"]): ?>
-                        <a href="/login.php" class="block px-4 py-2 text-gray-700 font-medium hover:text-fixo-orange transition-colors">Login</a>
-                        <a href="/registeration.php" class="block px-4 py-2 bg-fixo-orange text-white font-medium rounded-lg hover:bg-orange-600 transition-colors text-center">Register</a>
+                        <a href="/login.php"
+                            class="block px-4 py-2 text-gray-700 font-medium hover:text-fixo-orange transition-colors">Login</a>
+                        <a href="/registeration.php"
+                            class="block px-4 py-2 bg-fixo-orange text-white font-medium rounded-lg hover:bg-orange-600 transition-colors text-center">Register</a>
                     <?php else: ?>
-                        <a href="/profile.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded transition-colors">
+                        <a href="/profile.php"
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded transition-colors">
                             <div class="flex items-center space-x-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -170,7 +190,8 @@ require_once __DIR__ . '/../../Config/config.php';
                                 <span>Profile</span>
                             </div>
                         </a>
-                        <a href="<?php echo BASE_URL; ?>Proccessing_pages/Logout/logout_proccessing.php" class="block px-4 py-2 text-red-600 hover:bg-red-50 rounded transition-colors">
+                        <a href="<?php echo BASE_URL; ?>Proccessing_pages/Logout/logout_proccessing.php"
+                            class="block px-4 py-2 text-red-600 hover:bg-red-50 rounded transition-colors">
                             <div class="flex items-center space-x-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -45,22 +45,22 @@ CREATE TABLE bookings (
 INSERT INTO providers 
 (name, email, phone, password, address, service, rating, availability, isAdmin, status) 
 VALUES
-('John Smith', 'john.smith@provider.com', '1234567890', 'hashed_password_1', '123 Main Street, NY', 'Plumber', 4.5, 'available', 0, 1),
-('Alice Brown', 'alice.brown@provider.com', '2345678901', 'hashed_password_2', '45 Park Avenue, CA', 'Electrician', 4.2, 'busy', 0, 1),
-('Michael Lee', 'michael.lee@provider.com', '3456789012', 'hashed_password_3', '78 Sunset Blvd, TX', 'AC Repair', 4.8, 'available', 0, 1),
-('Sarah Johnson', 'sarah.johnson@provider.com', '4567890123', 'hashed_password_4', '90 Lake View, FL', 'Carpenter', 4.0, 'offline', 0, 1),
-('Admin Provider', 'admin@provider.com', '9999999999', 'admin_password', 'HQ Address', 'Management', 5.0, 'available', 1, 1);
+('Jim Hopper', 'jim.hopper@hawkins.com', '1111111111', 'hashed_hopper', 'Hawkins Police Dept, IN', 'Security & Repairs', 4.7, 'available', 0, 1),
+('Joyce Byers', 'joyce.byers@hawkins.com', '2222222222', 'hashed_joyce', 'Byers House, Hawkins, IN', 'Electrical Repair', 4.3, 'busy', 0, 1),
+('Steve Harrington', 'steve.harrington@scoops.com', '3333333333', 'hashed_steve', 'Starcourt Mall, Hawkins, IN', 'General Maintenance', 4.5, 'available', 0, 1),
+('Bob Newby', 'bob.newby@radiohut.com', '4444444444', 'hashed_bob', 'Radio Shack, Hawkins, IN', 'IT & Electronics', 4.9, 'offline', 0, 1),
+('Dr. Martin Brenner', 'brenner@hawkinslab.com', '9999999999', 'admin_brenner', 'Hawkins Lab, IN', 'Administration', 5.0, 'available', 1, 1);
 
 
 
 INSERT INTO clients 
 (name, email, phone, password, address, isAdmin, status) 
 VALUES
-('David Miller', 'david.miller@gmail.com', '1112223333', 'hashed_client_1', '12 Elm Street, NY', 0, 1),
-('Emma Wilson', 'emma.wilson@gmail.com', '2223334444', 'hashed_client_2', '34 Oak Street, CA', 0, 1),
-('James Anderson', 'james.anderson@gmail.com', '3334445555', 'hashed_client_3', '56 Pine Road, TX', 0, 1),
-('Olivia Taylor', 'olivia.taylor@gmail.com', '4445556666', 'hashed_client_4', '78 Maple Ave, FL', 0, 1),
-('Admin Client', 'admin@client.com', '8888888888', 'admin_client_pass', 'Admin Address', 1, 1);
+('Mike Wheeler', 'mike.wheeler@gmail.com', '5551112222', 'hashed_mike', 'Wheeler House, Hawkins, IN', 0, 1),
+('Eleven', 'eleven@gmail.com', '5552223333', 'hashed_eleven', 'Cabin in the Woods, Hawkins, IN', 0, 1),
+('Dustin Henderson', 'dustin.henderson@gmail.com', '5553334444', 'hashed_dustin', 'Henderson House, Hawkins, IN', 0, 1),
+('Lucas Sinclair', 'lucas.sinclair@gmail.com', '5554445555', 'hashed_lucas', 'Sinclair House, Hawkins, IN', 0, 1),
+('Max Mayfield', 'max.mayfield@gmail.com', '5556667777', 'hashed_max', 'Mayfield Trailer Park, Hawkins, IN', 1, 1);
 
 
 INSERT INTO bookings

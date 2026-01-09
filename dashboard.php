@@ -9,9 +9,9 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] == false) {
 }
 
 
-if (isset($_SESSION["success_message"])) {
-    $success_message = $_SESSION["success_message"];
-}
+// if (isset($_SESSION["success_message"])) {
+//     $success_message = $_SESSION["success_message"];
+// }
 
 if (isset($_SESSION["error_message"])) {
     $error_message = $_SESSION["error_message"];
@@ -29,7 +29,7 @@ if ($_SESSION["user_type"] == "clients") {
 ?>
 <!-- Message Boxes Container -->
 <div class="fixed top-6 right-6 z-50 space-y-3">
-    <!-- Success Message Box -->
+    <!-- Success Message Box
     <?php if (!empty($success_message)): ?>
         <div id="successBox"
             class="w-72 bg-green-500 text-white p-4 rounded-lg shadow-lg transform translate-x-full opacity-0 transition-all duration-500">
@@ -43,7 +43,7 @@ if ($_SESSION["user_type"] == "clients") {
                 </button>
             </div>
         </div>
-    <?php endif; ?>
+    <?php endif; ?> -->
 
     <!-- Error Message Box -->
     <?php if (!empty($error_message)): ?>

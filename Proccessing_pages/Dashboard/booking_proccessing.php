@@ -92,7 +92,7 @@ try {
         $_SESSION["success_message"] = "Booking created successfully! Booking ID: #" . $booking_id;
         
         // Redirect to dashboard
-        header("Location: " . BASE_URL . "dashboard.php");
+        header("Location: " . BASE_URL . "trackBooking.php");
         exit();
     } else {
         $errorInfo = $stmt->errorInfo();

@@ -1,12 +1,20 @@
 <?php
+require_once __DIR__ . "/Config/config.php";
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] == false ||
+!isset($_SESSION["user_type"]) || $_SESSION["user_type"] != "providers") {
+    header("Location: " . BASE_URL . "login.php");
+    exit();
+}
+
 require_once __DIR__ . "/Proccessing_pages/Dashboard/dashboard-provider-proccessing.php";
 require_once __DIR__ . "/includes/components/header.php";
 $user_data = $_SESSION["user"] ?? [];
 
-if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] == false) {
-    header("Location: " . BASE_URL . "login.php");
-    exit();
-}
+
 
 if (empty($user_data)) {
     echo "<div class='p-4 bg-red-100 text-red-700 rounded'>Error: No user data</div>";
