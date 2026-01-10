@@ -115,8 +115,8 @@ This project demonstrates proficiency in:
                     <br />
                     <sub><b>Abdul Wahab</b></sub>
                     <br />
-                    <sub>UI Designer</sub>
                 </a> 
+                    <sub>UI Designer</sub>
             </td>
             <td align="center">
                 <a href="https://github.com/sheikhawais7">
@@ -124,8 +124,8 @@ This project demonstrates proficiency in:
                     <br />
                     <sub><b>Awais Mehboob</b></sub>
                     <br />
-                    <sub>Frontend Developer</sub>
                 </a> 
+                    <sub>Nothing</sub>
             </td>
             <td align="center">
                 <a href="https://github.com/iammar99">
@@ -133,8 +133,8 @@ This project demonstrates proficiency in:
                     <br />
                     <sub><b>Ammar</b></sub>
                     <br />
-                    <sub>Backend Developer</sub>
                 </a> 
+                    <sub>Backend Developer</sub>
             </td>
         </tr> 
     </tbody>
