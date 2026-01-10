@@ -104,131 +104,216 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
         }
         .email-container {
             max-width: 600px;
             margin: 40px auto;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
         }
         .email-header {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            padding: 40px 30px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         .email-header h1 {
             color: #ffffff;
             margin: 0;
-            font-size: 28px;
-            font-weight: 600;
+            font-size: 32px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
         .email-body {
-            background: #ffffff;
             padding: 40px 30px;
             text-align: center;
         }
         .greeting {
-            color: #333333;
-            font-size: 18px;
+            color: #111827;
+            font-size: 20px;
             margin-bottom: 20px;
+            font-weight: 600;
         }
         .message {
-            color: #666666;
+            color: #6b7280;
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .otp-container {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             border-radius: 12px;
             padding: 25px;
             margin: 30px auto;
-            max-width: 300px;
+            max-width: 320px;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
         }
         .otp-label {
             color: rgba(255, 255, 255, 0.9);
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 500;
         }
         .otp-code {
             color: #ffffff;
-            font-size: 36px;
-            font-weight: bold;
+            font-size: 40px;
+            font-weight: 800;
             letter-spacing: 8px;
-            margin: 10px 0;
-            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         .expiry-note {
-            color: #ff6b6b;
+            color: #dc2626;
             font-size: 14px;
             margin-top: 20px;
-            padding: 12px;
-            background: #fff5f5;
+            padding: 14px;
+            background: #fef2f2;
             border-radius: 8px;
-            border-left: 4px solid #ff6b6b;
+            border: 1px solid #fecaca;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .expiry-note strong {
+            font-weight: 600;
         }
         .footer {
-            background: #f8f9fa;
+            background: #f9fafb;
             padding: 25px;
             text-align: center;
-            color: #888888;
-            font-size: 13px;
-            border-top: 1px solid #e9ecef;
+            color: #6b7280;
+            font-size: 14px;
+            border-top: 1px solid #e5e7eb;
         }
         .security-note {
-            background: #e7f3ff;
-            border-left: 4px solid #2196F3;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
             text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .security-note p {
-            margin: 5px 0;
-            color: #555;
+            margin: 8px 0;
+            color: #1e40af;
             font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .security-note p strong {
+            color: #1e3a8a;
+            font-weight: 600;
+            min-width: 100px;
+        }
+        .icon {
+            color: #f97316;
+            font-size: 16px;
+            min-width: 20px;
+        }
+        .company-name {
+            color: #f97316;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .support-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .support-link:hover {
+            text-decoration: underline;
+        }
+        .logo {
+            display: inline-block;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .button {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        .button:hover {
+            background: #ea580c;
+        }
+        .divider {
+            height: 1px;
+            background: #e5e7eb;
+            margin: 30px 0;
         }
     </style>
 </head>
 <body>
     <div class='email-container'>
         <div class='email-header'>
-            <h1>🔐 Verification Code</h1>
+            <div class='logo'>FIXO</div>
+            <h1>🔐 Account Verification</h1>
         </div>
         
         <div class='email-body'>
-            <p class='greeting'><strong>Hello!</strong></p>
+            <p class='greeting'>Hello $name !</p>
             <p class='message'>
-                We received a request to verify your account. Please use the One-Time Password (OTP) below to complete your verification.
+                We received a request to verify your Fixo account. Use the One-Time Password (OTP) below to complete your verification process.
             </p>
             
             <div class='otp-container'>
-                <div class='otp-label'>Your OTP Code</div>
+                <div class='otp-label'>Your Verification Code</div>
                 <div class='otp-code'>$OTP</div>
             </div>
             
-            // <div class='expiry-note'>
-            //     ⏰ This code will expire in <strong>10 minutes</strong>
-            // </div>
             
             <div class='security-note'>
-                <p><strong>🛡️ Security Tips:</strong></p>
-                <p>• Never share this code with anyone</p>
-                <p>• We will never ask for your OTP via phone or email</p>
-                <p>• If you didn't request this code, please ignore this email</p>
-            </div>
+                <p><strong>🛡️ Security Notice:</strong></p>
+                <p>
+                    <span class='icon'>•</span> Never share this code with anyone, including Fixo support
+                </p>
+                <p>
+                    <span class='icon'>•</span> We will never ask for your password or OTP via phone or email
+                </p>
+                <p>
+                    <span class='icon'>•</span> If you didn't request this, please secure your account immediately
+                </p>
+            </div>            
+  
         </div>
         
         <div class='footer'>
-            <p>If you have any questions, feel free to contact our support team.</p>
-            <p style='margin-top: 15px;'>© 2024 Your Company Name. All rights reserved.</p>
+            <p>© <?php echo date('Y'); ?> <span class='company-name'>Fixo</span>. All rights reserved.</p>
+            <p style='margin-top: 10px; font-size: 13px;'>
+                This email was sent to you because you registered on Fixo Service Platform.<br>
+            </p>
+            <p style='margin-top: 15px; font-size: 12px; color: #9ca3af;'>
+                Fixo Inc., Service Platform<br>
+            </p>
         </div>
     </div>
 </body>
@@ -239,8 +324,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             $mail->send();
                             header("Location: " . BASE_URL . "otp.php");
                             echo "Email sent successfully!";
-                        } catch (Exception $e) {
-                            echo "Email could not be sent. Error: {$mail->ErrorInfo}";
+                            } catch (Exception $e) {
+                                echo "Email could not be sent. Error: {$mail->ErrorInfo}";
                         }
                     }
                 }
@@ -257,7 +342,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION["form_data"] = $_POST;
         $_SESSION["form_type"] = "client";
         // var_dump($_SESSION["errors"]);
-        // header("Location: " . BASE_URL . "registeration.php");
+        header("Location: " . BASE_URL . "registeration.php");
     }
 
     // var_dump($_POST);
