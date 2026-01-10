@@ -21,7 +21,6 @@ $dashboard_stats = [
     'response_rate' => 98
 ];
 
-
 // $recent_bookings = [
 //     ['id' => 1001, 'customer' => 'John Smith', 'problem_type' => 'Oil Change', 'created_at' => '10:30 AM', 'status' => 'pending'],
 //     ['id' => 1002, 'customer' => 'Sarah Johnson', 'problem_type' => 'Brake Repair', 'created_at' => '2:00 PM', 'status' => 'confirmed'],
@@ -112,7 +111,7 @@ $earnings_data = [
                 </div>
                 <div>
                     <p class="text-gray-500 text-sm">Avg. Rating</p>
-                    <p class="text-3xl font-bold text-gray-800"><?php echo $dashboard_stats['avg_rating']; ?></p>
+                    <p class="text-3xl font-bold text-gray-800"><?php echo $_SESSION["user"]["rating"]; ?></p>
                 </div>
             </div>
         </div>
@@ -319,26 +318,6 @@ $earnings_data = [
 </style>
 
 <script>
-    // Availability Toggle
-    const toggle = document.getElementById('availability-toggle');
-    const statusText = document.getElementById('availability-status');
-
-    if (toggle) {
-        toggle.addEventListener('change', function () {
-            if (this.checked) {
-                statusText.textContent = 'Available';
-                statusText.className = 'font-medium text-green-600';
-                // Here you would make an AJAX call to update availability in database
-                console.log('Setting availability to: Available');
-            } else {
-                statusText.textContent = 'Not Available';
-                statusText.className = 'font-medium text-red-600';
-                // Here you would make an AJAX call to update availability in database
-                console.log('Setting availability to: Not Available');
-            }
-        });
-    }
-
     // Quick action buttons
     document.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', function (e) {
