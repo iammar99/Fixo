@@ -4,8 +4,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] == false ||
-!isset($_SESSION["user_type"]) || $_SESSION["user_type"] != "providers") {
+if (
+    !isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] == false ||
+    !isset($_SESSION["user_type"]) || $_SESSION["user_type"] != "providers"
+) {
     header("Location: " . BASE_URL . "login.php");
     exit();
 }
@@ -14,8 +16,6 @@ require_once __DIR__ . "/Proccessing_pages/Dashboard/dashboard-provider-proccess
 require_once __DIR__ . "/includes/components/header.php";
 $user_data = $_SESSION["user"] ?? [];
 
-
-
 if (empty($user_data)) {
     echo "<div class='p-4 bg-red-100 text-red-700 rounded'>Error: No user data</div>";
     return;
@@ -23,19 +23,19 @@ if (empty($user_data)) {
 ?>
 
 <!-- Bookings Page -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8">
     <!-- Page Header -->
-    <div class="mb-8">
-        <div class="flex items-center justify-between">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-900">Bookings</h1>
-                <p class="text-gray-600 mt-2">Manage all your customer bookings</p>
+    <div class="mb-6 sm:mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="order-2 sm:order-1">
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Bookings</h1>
+                <p class="text-gray-600 mt-1 sm:mt-2 text-sm sm:text-base">Manage all your customer bookings</p>
             </div>
-            <div class="flex items-center space-x-4">
+            <div class="order-1 sm:order-2 w-full sm:w-auto">
                 <div class="relative">
                     <div class="relative">
                         <input type="text" id="searchInput" placeholder="Search by customer, problem type..."
-                            class="px-4 py-2 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-fixo-orange focus:border-transparent w-64">
+                            class="w-full sm:w-64 px-4 py-2 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-fixo-orange focus:border-transparent text-sm sm:text-base">
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                         <button id="clearSearch"
                             class="absolute right-3 top-3 text-gray-400 hover:text-gray-600 hidden">
@@ -46,31 +46,32 @@ if (empty($user_data)) {
             </div>
         </div>
 
-        <!-- Stats Tabs -->
-        <div class="flex border-b border-gray-200 mt-6 overflow-x-auto" id="statusTabs">
+
+        <!-- Stats Tabs - Mobile Scrollable -->
+        <div class="flex border-b border-gray-200 mt-4 sm:mt-6 overflow-x-auto scrollbar-hide" id="statusTabs">
             <button data-status="all"
-                class="px-6 py-3 border-b-2 border-fixo-orange text-fixo-orange font-medium whitespace-nowrap">
+                class="px-3 sm:px-6 py-2 sm:py-3 border-b-2 border-fixo-orange text-fixo-orange font-medium whitespace-nowrap text-sm sm:text-base">
                 All (<?php echo count($recent_bookings); ?>)
             </button>
             <button data-status="pending"
-                class="px-6 py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap">
+                class="px-3 sm:px-6 py-2 sm:py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap text-sm sm:text-base">
                 Pending (<?php echo count(array_filter($recent_bookings, fn($b) => $b['status'] === 'pending')); ?>)
             </button>
             <button data-status="accepted"
-                class="px-6 py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap">
+                class="px-3 sm:px-6 py-2 sm:py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap text-sm sm:text-base">
                 Accepted (<?php echo count(array_filter($recent_bookings, fn($b) => $b['status'] === 'accepted')); ?>)
             </button>
             <button data-status="in_progress"
-                class="px-6 py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap">
+                class="px-3 sm:px-6 py-2 sm:py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap text-sm sm:text-base">
                 In Progress
                 (<?php echo count(array_filter($recent_bookings, fn($b) => $b['status'] === 'in_progress')); ?>)
             </button>
             <button data-status="completed"
-                class="px-6 py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap">
+                class="px-3 sm:px-6 py-2 sm:py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap text-sm sm:text-base">
                 Completed (<?php echo count(array_filter($recent_bookings, fn($b) => $b['status'] === 'completed')); ?>)
             </button>
             <button data-status="cancelled"
-                class="px-6 py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap">
+                class="px-3 sm:px-6 py-2 sm:py-3 text-gray-600 hover:text-gray-900 font-medium whitespace-nowrap text-sm sm:text-base">
                 Cancelled (<?php echo count(array_filter($recent_bookings, fn($b) => $b['status'] === 'cancelled')); ?>)
             </button>
         </div>
@@ -78,38 +79,40 @@ if (empty($user_data)) {
 
     <!-- Search Results Info -->
     <div id="searchResultsInfo" class="mb-4 p-3 bg-blue-50 rounded-lg hidden">
-        <p class="text-blue-800">
+        <p class="text-blue-800 text-sm sm:text-base">
             Showing <span id="visibleCount">0</span> of <?php echo count($recent_bookings); ?> bookings
             <span id="searchTermText" class="hidden"> for "<strong id="currentSearchTerm"></strong>"</span>
-            <button onclick="clearSearch()" class="ml-2 text-blue-600 hover:text-blue-800 underline">Clear
-                search</button>
+            <button onclick="clearSearch()"
+                class="ml-2 text-blue-600 hover:text-blue-800 underline text-sm sm:text-base">Clear search</button>
         </p>
     </div>
 
     <!-- Detailed Bookings View -->
-    <div class="space-y-6" id="bookingsContainer">
+    <div class="space-y-4 sm:space-y-6" id="bookingsContainer">
         <?php if (empty($recent_bookings)): ?>
-            <div class="bg-white rounded-2xl shadow-lg p-12 text-center">
-                <div class="w-20 h-20 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-calendar-times text-gray-400 text-3xl"></i>
+            <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-12 text-center">
+                <div
+                    class="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-calendar-times text-gray-400 text-2xl sm:text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">No Bookings Found</h3>
-                <p class="text-gray-600 mb-6">You don't have any bookings yet.</p>
+                <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">No Bookings Found</h3>
+                <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">You don't have any bookings yet.</p>
             </div>
         <?php else: ?>
             <?php foreach ($recent_bookings as $booking): ?>
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden booking-card"
+                <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden booking-card"
                     data-status="<?php echo $booking['status']; ?>"
                     data-customer="<?php echo strtolower(htmlspecialchars($booking['customer'])); ?>"
                     data-problem="<?php echo strtolower(htmlspecialchars($booking['problem_type'])); ?>"
                     data-description="<?php echo strtolower(htmlspecialchars($booking['problem_description'])); ?>">
-                    <div class="p-6">
+                    <div class="p-4 sm:p-6">
                         <!-- Booking Header -->
-                        <div class="flex justify-between items-start mb-6">
-                            <div>
-                                <div class="flex items-center">
-                                    <h3 class="text-xl font-bold text-gray-900">Booking #<?php echo $booking['id']; ?></h3>
-                                    <span class="ml-4 px-3 py-1 rounded-full text-xs font-medium 
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 sm:mb-6 gap-3">
+                            <div class="order-2 sm:order-1">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <h3 class="text-lg sm:text-xl font-bold text-gray-900">Booking
+                                        #<?php echo $booking['id']; ?></h3>
+                                    <span class="ml-0 sm:ml-4 px-3 py-1 rounded-full text-xs font-medium 
                                     <?php
                                     if ($booking['status'] == 'completed')
                                         echo 'bg-green-100 text-green-800';
@@ -125,12 +128,12 @@ if (empty($user_data)) {
                                         <?php echo ucfirst(str_replace('_', ' ', $booking['status'])); ?>
                                     </span>
                                 </div>
-                                <p class="text-gray-600 mt-1">
+                                <p class="text-gray-600 mt-1 text-sm">
                                     <i class="far fa-clock mr-1"></i>
                                     <?php echo (new DateTime($booking['created_at']))->format('M d, Y \a\t h:i A'); ?>
                                 </p>
                             </div>
-                            <div class="flex space-x-2">
+                            <div class="order-1 sm:order-2 flex flex-wrap gap-2">
                                 <?php if ($booking['status'] == 'pending'): ?>
                                     <!-- Accept Form -->
                                     <form action="Proccessing_pages/Dashboard/update_booking_status.php" method="POST"
@@ -138,7 +141,7 @@ if (empty($user_data)) {
                                         <input type="hidden" name="booking_id" value="<?php echo $booking['id']; ?>">
                                         <input type="hidden" name="status" value="accepted">
                                         <button type="submit"
-                                            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
+                                            class="px-3 sm:px-4 py-1.5 sm:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm sm:text-base w-full sm:w-auto">
                                             Accept
                                         </button>
                                     </form>
@@ -149,7 +152,7 @@ if (empty($user_data)) {
                                         <input type="hidden" name="booking_id" value="<?php echo $booking['id']; ?>">
                                         <input type="hidden" name="status" value="cancelled">
                                         <button type="submit"
-                                            class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium">
+                                            class="px-3 sm:px-4 py-1.5 sm:py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm sm:text-base w-full sm:w-auto">
                                             Reject
                                         </button>
                                     </form>
@@ -161,7 +164,7 @@ if (empty($user_data)) {
                                         <input type="hidden" name="booking_id" value="<?php echo $booking['id']; ?>">
                                         <input type="hidden" name="status" value="in_progress">
                                         <button type="submit"
-                                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                                            class="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm sm:text-base w-full sm:w-auto">
                                             Start Job
                                         </button>
                                     </form>
@@ -173,7 +176,7 @@ if (empty($user_data)) {
                                         <input type="hidden" name="booking_id" value="<?php echo $booking['id']; ?>">
                                         <input type="hidden" name="status" value="completed">
                                         <button type="submit"
-                                            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
+                                            class="px-3 sm:px-4 py-1.5 sm:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm sm:text-base w-full sm:w-auto">
                                             Mark Complete
                                         </button>
                                     </form>
@@ -184,54 +187,113 @@ if (empty($user_data)) {
                         </div>
 
                         <!-- Customer & Problem Info -->
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                             <!-- Customer Info -->
-                            <div class="bg-gray-50 rounded-xl p-4">
-                                <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                            <div class="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4">
+                                <h4 class="font-bold text-gray-800 mb-2 sm:mb-3 flex items-center text-sm sm:text-base">
                                     <i class="fas fa-user mr-2 text-fixo-orange"></i> Customer Information
                                 </h4>
-                                <div class="space-y-3">
+                                <div class="space-y-2 sm:space-y-3">
                                     <div class="flex items-center">
                                         <div
-                                            class="w-10 h-10 rounded-full bg-fixo-orange flex items-center justify-center text-white font-bold mr-3">
+                                            class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-fixo-orange flex items-center justify-center text-white font-bold mr-2 sm:mr-3 text-sm sm:text-base">
                                             <?php echo strtoupper(substr($booking['customer'], 0, 1)); ?>
                                         </div>
                                         <div>
-                                            <p class="font-medium text-gray-900"><?php echo $booking['customer']; ?></p>
-                                            <p class="text-sm text-gray-500">Customer</p>
+                                            <p class="font-medium text-gray-900 text-sm sm:text-base">
+                                                <?php echo $booking['customer']; ?></p>
+                                            <p class="text-xs sm:text-sm text-gray-500">Customer</p>
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Contact</p>
-                                        <p class="font-medium">Phone: Available on request</p>
+                                        <p class="text-xs sm:text-sm text-gray-500">Contact</p>
+                                        <p class="font-medium text-sm">Phone: Available on request</p>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Problem Details -->
-                            <div class="bg-gray-50 rounded-xl p-4 lg:col-span-2">
-                                <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                            <div class="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:col-span-2">
+                                <h4 class="font-bold text-gray-800 mb-2 sm:mb-3 flex items-center text-sm sm:text-base">
                                     <i class="fas fa-car mr-2 text-fixo-orange"></i> Service Details
                                 </h4>
-                                <div class="space-y-4">
+                                <div class="space-y-3 sm:space-y-4">
                                     <div>
-                                        <p class="text-sm text-gray-500 mb-1">Problem Type</p>
-                                        <p class="font-medium text-lg"><?php echo ucwords($booking['problem_type']); ?></p>
+                                        <p class="text-xs sm:text-sm text-gray-500 mb-1">Problem Type</p>
+                                        <p class="font-medium text-base sm:text-lg">
+                                            <?php echo ucwords($booking['problem_type']); ?></p>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500 mb-1">Description</p>
-                                        <p class="font-medium"><?php echo $booking['problem_description']; ?></p>
+                                        <p class="text-xs sm:text-sm text-gray-500 mb-1">Description</p>
+                                        <p class="font-medium text-sm sm:text-base">
+                                            <?php echo $booking['problem_description']; ?></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Timeline -->
-                        <div class="mt-6 pt-6 border-t border-gray-200">
-                            <h4 class="font-bold text-gray-800 mb-4 flex items-center">
+                        <!-- Timeline - Mobile Collapsed Version -->
+                        <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200">
+                            <h4 class="font-bold text-gray-800 mb-3 sm:mb-4 flex items-center text-sm sm:text-base">
                                 <i class="fas fa-history mr-2 text-fixo-orange"></i> Booking Timeline
                             </h4>
-                            <div class="flex items-center space-x-4">
+
+                            <!-- Mobile Timeline (Stacked) -->
+                            <div class="block sm:hidden space-y-4">
+                                <?php
+                                $timeline_steps = [
+                                    [
+                                        'title' => 'Booked',
+                                        'icon' => 'fa-check',
+                                        'color' => 'bg-green-500',
+                                        'time' => (new DateTime($booking['created_at']))->format('M d, h:i A'),
+                                        'active' => true
+                                    ],
+                                    [
+                                        'title' => 'Confirmed',
+                                        'icon' => $booking['status'] === 'pending' ? 'fa-clock' : 'fa-check',
+                                        'color' => $booking['status'] === 'pending' ? 'bg-gray-300' : 'bg-blue-500',
+                                        'status' => $booking['status'] === 'pending' ? 'Awaiting confirmation' : 'Confirmed',
+                                        'active' => $booking['status'] !== 'pending'
+                                    ],
+                                    [
+                                        'title' => 'Service',
+                                        'icon' => in_array($booking['status'], ['completed', 'in_progress']) ? 'fa-tools' : 'fa-clock',
+                                        'color' => in_array($booking['status'], ['completed', 'in_progress']) ? 'bg-blue-500' :
+                                            ($booking['status'] === 'accepted' ? 'bg-gray-300' : 'bg-gray-200'),
+                                        'status' => $booking['status'] === 'completed' ? 'Completed' :
+                                            ($booking['status'] === 'in_progress' ? 'In Progress' :
+                                                ($booking['status'] === 'accepted' ? 'Scheduled' : 'Not Started')),
+                                        'active' => in_array($booking['status'], ['completed', 'in_progress'])
+                                    ],
+                                    [
+                                        'title' => 'Completed',
+                                        'icon' => $booking['status'] === 'completed' ? 'fa-check-double' : 'fa-flag-checkered',
+                                        'color' => $booking['status'] === 'completed' ? 'bg-green-500' : 'bg-gray-200',
+                                        'status' => $booking['status'] === 'completed' ? 'Job completed' : 'Pending completion',
+                                        'active' => $booking['status'] === 'completed'
+                                    ]
+                                ];
+                                ?>
+
+                                <?php foreach ($timeline_steps as $step): ?>
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-6 h-6 sm:w-8 sm:h-8 rounded-full <?php echo $step['color']; ?> flex items-center justify-center text-white mr-3">
+                                            <i class="fas <?php echo $step['icon']; ?> text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-sm"><?php echo $step['title']; ?></p>
+                                            <p class="text-xs text-gray-500">
+                                                <?php echo isset($step['time']) ? $step['time'] : $step['status']; ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <!-- Desktop Timeline (Horizontal) -->
+                            <div class="hidden sm:flex items-center space-x-4">
                                 <div class="flex-1 flex items-center">
                                     <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white">
                                         <i class="fas fa-check text-sm"></i>
