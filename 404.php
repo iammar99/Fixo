@@ -136,7 +136,7 @@ require_once __DIR__ . "/Config/config.php";
                     <span class="font-medium text-gray-800">Login</span>
                 </a>
                 
-                <a href="<?php echo BASE_URL; ?>register.php"
+                <a href="<?php echo BASE_URL; ?>registeration.php"
                    class="p-4 bg-white border border-gray-200 rounded-xl hover:border-purple-500 hover:shadow transition-all duration-300 text-center">
                     <div class="w-12 h-12 mx-auto mb-3 bg-purple-100 rounded-full flex items-center justify-center">
                         <i class="fas fa-user-plus text-purple-600"></i>
