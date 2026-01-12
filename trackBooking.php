@@ -202,7 +202,7 @@ $status_counts = $status_counts ?? [
                                     </form>
                                 <?php endif; ?>
                                 
-                                <?php if (!empty($booking['provider_id'])): ?>
+                                <?php if (!empty($booking['provider_id']) && $booking['status'] != 'cancelled'): ?>
                                 <!-- Contact Provider Form -->
                                 <form action="Proccessing_pages/Booking/contact-provider.php" method="POST" class="inline">
                                     <input type="hidden" name="provider_id" value="<?php echo $booking['provider_id']; ?>">

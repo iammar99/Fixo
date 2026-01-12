@@ -12,7 +12,7 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] == false) {
 // Check if provider_id is provided
 if (!isset($_POST['provider_id']) || empty($_POST['provider_id'])) {
     $_SESSION['error'] = "No provider specified.";
-    header("Location: " . BASE_URL . "dashboard/dashboard-client-bookings.php");
+    header("Location: " . BASE_URL . "trackBooking/trackBooking-client-bookings.php");
     exit();
 }
 
@@ -35,7 +35,7 @@ try {
     
     if ($check_stmt->rowCount() === 0) {
         $_SESSION['error'] = "You don't have any active bookings with this provider.";
-        header("Location: " . BASE_URL . "dashboard/dashboard-client-bookings.php");
+        header("Location: " . BASE_URL . "trackBooking.php");
         exit();
     }
     
