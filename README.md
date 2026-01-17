@@ -125,7 +125,7 @@ This project demonstrates proficiency in:
                     <sub><b>Awais Mehboob</b></sub>
                     <br />
                 </a> 
-                    <sub>Nothing</sub>
+                    <sub>Documentation</sub>
             </td>
             <td align="center">
                 <a href="https://github.com/iammar99">
